@@ -1,0 +1,11 @@
+{
+  "name": "sports-ranking",
+  "version": "0.0.1",
+  "author": "Jonathan Leack",
+  "license": "ISC",
+  "description": "This command-line JavaScript application will calculate a ranking table for a sports league by parsing an input file and then calculating standings.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}
