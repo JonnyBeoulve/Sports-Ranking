@@ -150,7 +150,8 @@ class SoccerLeague {
     displayLeagueStandings() {
         console.log("\n===== CURRENT LEAGUE STANDINGS =====");
         for (let i = 0; i < this.teamStandings.length; i++) {
-            console.log(`\n${i + 1}. ${this.teamStandings[i].name} - ${this.teamStandings[i].points} points`)
+            if (this.teamStandings[i].points === 1) console.log(`\n${i + 1}. ${this.teamStandings[i].name} - ${this.teamStandings[i].points} point`)
+            else console.log(`\n${i + 1}. ${this.teamStandings[i].name} - ${this.teamStandings[i].points} points`)
         }
         console.log("\n====================================");
     }
