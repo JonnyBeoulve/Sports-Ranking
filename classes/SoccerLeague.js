@@ -45,7 +45,7 @@ class SoccerLeague {
             if (this.inputString[i].match(/[a-z]/i)) {
                 let teamName = '';
                 let k = i;
-                while (this.inputString[k].match(/[a-z]/i) || this.inputString[k] === ' ') {
+                while (this.inputString[k].match(/[a-z]/i) || this.inputString[k] === ' ' || this.inputString[k] === '.' || this.inputString[k] === '-') {
                     teamName += this.inputString[k];
                     k++
                     skipIndexes++;
@@ -131,12 +131,16 @@ class SoccerLeague {
 
     /*======================================================================
     // This method will rearrange the teamStandings object of arrays 
-    // using two sorts. The first will sort alphabetically, while the
-    // second will sort by points.
+    // using a two-point sorting algorithm. First it'll check if two
+    // teams have the same points, and if so arrange them alphabetically.
+    // If both teams have different points, sort based on points.
     ======================================================================*/
     sortTeamStandings() {
-        this.teamStandings.sort((a, b) => a.name > b.name);
-        this.teamStandings.sort((a, b) => a.points < b.points);
+        this.teamStandings.sort((a, b) => {
+            if (a.points === b.points && a.name > b.name) return 1;
+            else if (a.points === b.points && a.name < b.name) return -1;
+            return a.points > b.points ? -1 : 1;
+        })
     }
 
     /*======================================================================
