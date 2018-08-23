@@ -1,6 +1,8 @@
 class SoccerLeague {
     constructor() {
-        this.inputString = ''
+        this.inputString = '',
+        this.gameTeams = [],
+        this.gamePoints = []
     }
 
     /*======================================================================
@@ -21,8 +23,53 @@ class SoccerLeague {
         this.inputString = fs.readFileSync(`./files/${fileName}.txt`, 'utf8');
     }
 
+    /*======================================================================
+    // This method parse the previously created string to find all team
+    // names and scores, pushing them to arrays within the class.
+    ======================================================================*/
     parseForTeamsAndScores() {
-        console.log('Working');
+        let skipIndexes = 0;
+
+        // For every index in inputString, find groups of alphabetic letters
+        // that correspond to team names. Additionally, find groups of numbers
+        // that correspond to scores. Push both of these to arrays within the.
+        // class. SkipIndexes is used to skip indexes already taken into
+        // consideration in nested loops.
+        for (let i in this.inputString) {
+            if (skipIndexes) {
+                skipIndexes--;
+                continue;
+            }
+
+            if (this.inputString[i].match(/[a-z]/i)) {
+                let teamName = '';
+                let k = i;
+                while (this.inputString[k].match(/[a-z]/i) || this.inputString[k] === ' ') {
+                    teamName += this.inputString[k];
+                    k++
+                    skipIndexes++;
+                }
+
+                teamName = teamName.substring(0, teamName.length - 1);
+                this.gameTeams.push(teamName);
+                skipIndexes--;
+                continue;
+            }
+
+            if (this.inputString[i].match(/\d+/g)) {
+                let teamScore = '';
+                let k = i;
+                while (this.inputString[k].match(/\d+/g)) {
+                    teamScore += this.inputString[k];
+                    k++
+                    skipIndexes++;
+                }
+
+                this.gamePoints.push(teamScore);
+                continue;
+            }
+
+        }
     }
 
 }
