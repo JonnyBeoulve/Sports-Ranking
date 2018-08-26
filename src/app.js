@@ -1,4 +1,4 @@
-let SoccerLeague = require('../classes/SoccerLeague');
+let SoccerLeague = require('./classes/SoccerLeague');
 
 let league1 = new SoccerLeague(); // Instantiate a new instance of SoccerLeague
 league1.readFileToString(); // Read the file into a class property

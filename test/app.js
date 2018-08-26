@@ -1,5 +1,5 @@
 let expect = require("chai").expect;
-let SoccerLeague = require("../classes/SoccerLeague");
+let SoccerLeague = require("../src/classes/SoccerLeague");
 
 /*======================================================================
 // This testing environment will test all major functionality of the
